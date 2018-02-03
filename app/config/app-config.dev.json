@@ -1,0 +1,6 @@
+{
+  "appType": "Ns",
+  "apiEndpoint": "http://localhost:5000/api/",
+  "loggingEnabled": true,
+  "loggingLevel": "Debug"
+}

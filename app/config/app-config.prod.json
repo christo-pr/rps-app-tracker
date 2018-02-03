@@ -1,0 +1,6 @@
+{
+  "appType": "Ns",
+  "apiEndpoint": "",
+  "loggingEnabled": true,
+  "loggingLevel": "Error"
+}

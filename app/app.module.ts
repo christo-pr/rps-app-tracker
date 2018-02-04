@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 
 import { CoreModule } from './core/core.module';
+import { AppConfigModule } from './config/app-config.module';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
@@ -22,6 +23,7 @@ import './rxjs-imports';
         AppRoutingModule,
         NativeScriptHttpModule,
         CoreModule,
+        AppConfigModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,

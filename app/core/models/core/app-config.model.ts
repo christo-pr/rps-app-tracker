@@ -8,5 +8,5 @@ export interface AppConfig {
   apiEndpoint: string;
   loggingEnabled: boolean;
   loggingLevel: LoggingLevelEnum;
-  storageServiceClass: TypeProvider
+  storageServiceClass: TypeProvider;
 }

@@ -17,7 +17,7 @@ export class CoreModule {
   constructor (
     @Optional() @SkipSelf() parentModule: CoreModule
   ) {
-    if(parentModule){
+    if (parentModule) {
       throw new Error('Core Modules has already been loaded. Import CoreModule into the AppModule only');
     }
   }

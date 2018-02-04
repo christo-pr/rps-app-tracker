@@ -8,11 +8,15 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { AppConfigModule } from './config/app-config.module';
 
+import { setAppEvents } from './globals/app-events';
+
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 import { createTranslationLoader } from './utils';
 import './utils/console-color';
 import './rxjs-imports';
+
+setAppEvents();
 
 @NgModule({
     bootstrap: [

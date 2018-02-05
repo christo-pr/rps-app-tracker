@@ -7,6 +7,9 @@
 		"id": "org.nativescript.rpstracker",
 		"tns-ios": {
 			"version": "3.3.0"
+		},
+		"tns-android": {
+			"version": "3.3.1"
 		}
 	},
 	"dependencies": {
@@ -33,10 +36,14 @@
 	"devDependencies": {
 		"@types/lodash": "4.14.68",
 		"@types/node": "~6.0.60",
+		"babel-traverse": "6.26.0",
+		"babel-types": "6.26.0",
+		"babylon": "6.18.0",
+		"codelyzer": "~4.1.0",
+		"lazy": "1.0.11",
 		"nativescript-dev-typescript": "~0.5.0",
-		"typescript": "~2.5.3",
 		"ts-node": "~3.3.0",
 		"tslint": "^5.8.0",
-		"codelyzer": "~4.1.0"
+		"typescript": "~2.5.3"
 	}
 }

@@ -1,4 +1,6 @@
-<ActionBar [title]=" 'app.title' | translate " icon="" class="action-bar">
+<StackLayout>
+    <StackLayout *ngFor="let item of items$ | async">
+        <Label [text]="item.title"></Label>
 
-</ActionBar>
-<Label [text]="myText" textWrap="true"></Label>
+    </StackLayout>
+</StackLayout>

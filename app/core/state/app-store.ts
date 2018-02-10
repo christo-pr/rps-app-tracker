@@ -10,11 +10,11 @@ export class Store {
     return this.subj.value;
   }
 
-  public select<T>(name: string): Observable<T> {
+  public select<T>(name: StateKey): Observable<T> {
     return this.subj.pluck<State, T>(name).distinctUntilChanged<T>();
   }
 
-  public set<T>(name: string, state: T) {
+  public set<T>(name: StateKey, state) {
     this.subj.next({
       ...this.value, [name]: state
     });

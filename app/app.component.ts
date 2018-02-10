@@ -3,6 +3,8 @@ import { Page } from 'ui/page';
 import { device } from 'platform';
 import { TranslateService } from '@ngx-translate/core';
 import { LoggerService } from './core/services';
+import { Store } from './core/state/app-store';
+import { PtItem } from './core/models/domain';
 
 @Component({
   selector: 'ns-app',
@@ -11,10 +13,11 @@ import { LoggerService } from './core/services';
 
 export class AppComponent {
 
-  myText: string;
+  public items$ = this.store.select<PtItem[]>('backlogItems');
 
   constructor(
     private page: Page,
+    private store: Store,
     private translateService: TranslateService,
     private logger: LoggerService
   ) {

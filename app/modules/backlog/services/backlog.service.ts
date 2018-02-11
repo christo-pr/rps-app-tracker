@@ -18,7 +18,7 @@ export class BacklogService {
   public fetchItems() {
     this.repo.getPtItems(
       this.errorHandlerService.handleError,
-      (ptItems:PtItem[]) => {
+      (ptItems: PtItem[]) => {
         this.zone.run(() => {
           this.store.set('backlogItems', ptItems);
         });

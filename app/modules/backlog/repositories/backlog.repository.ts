@@ -10,7 +10,7 @@ import { PtItem } from '../../../core/models/domain';
 export class BacklogRepository {
   constructor(
     @Inject(APP_CONFIG) private config: AppConfig,
-    private http: Htpp
+    private http: Http
   ) { }
 
   private getBacklogUrl() {
@@ -21,7 +21,7 @@ export class BacklogRepository {
     errorHandler: (error) => ErrorObservable,
     successHandler: (data: PtItem[]) => void
   ) {
-    this.http.get(this.getBacklogUrl)
+    this.http.get(this.getBacklogUrl())
       .map(res => res.json())
       .catch(errorHandler)
       .subscribe(successHandler);

@@ -28,7 +28,7 @@ setAppEvents();
         AppRoutingModule,
         NativeScriptHttpModule,
         CoreModule,
-        BacklogModule
+        BacklogModule,
         AppConfigModule,
         TranslateModule.forRoot({
           loader: {

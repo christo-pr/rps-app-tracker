@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 import { CoreModule } from './core/core.module';
 import { AppConfigModule } from './config/app-config.module';
+import { BacklogModule } from './modules/backlog/backlog.module';
 
 import { setAppEvents } from './globals/app-events';
 
@@ -27,6 +28,7 @@ setAppEvents();
         AppRoutingModule,
         NativeScriptHttpModule,
         CoreModule,
+        BacklogModule
         AppConfigModule,
         TranslateModule.forRoot({
           loader: {

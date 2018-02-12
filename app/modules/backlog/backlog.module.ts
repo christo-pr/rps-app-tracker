@@ -4,6 +4,8 @@ import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 
 import { BacklogRepository } from './repositories/backlog.repository';
 import { BacklogService } from './services/backlog.service';
+import { COMPONENTS } from './components';
+import { PAGES } from './pages';
 
 
 
@@ -12,7 +14,13 @@ import { BacklogService } from './services/backlog.service';
   imports: [
     NativeScriptModule
   ],
-  declarations: [  ],
+  exports: [
+    ...PAGES
+  ],
+  declarations: [
+    ...COMPONENTS,
+    ...PAGES
+   ],
   providers: [
     BacklogRepository,
     BacklogService

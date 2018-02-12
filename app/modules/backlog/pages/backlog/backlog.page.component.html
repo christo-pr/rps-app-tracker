@@ -1,0 +1,11 @@
+<GridLayout rows="*, 60" class="backlog-container" >
+    <GridLayout row="0" class="list-container">
+      <pt-list [items]="items$ | async"
+               (listItemSelected)="selecteListItem($event)"></pt-list>
+    </GridLayout>
+
+    <StackLayout row="1" class="btn-add-wrapper">
+        <Button text="Add" class="btn-add" (tap)="onAddTap($event)"></Button>
+
+    </StackLayout>
+</GridLayout>

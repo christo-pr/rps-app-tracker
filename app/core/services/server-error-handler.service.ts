@@ -8,6 +8,6 @@ export class ServerErrorHandlerService {
 
 
   public handleError(error: any) {
-    return Observable.throw(error.json().error || 'Server Error' );
+    return Observable.throw(error.json() || 'Server Error' );
   }
 }

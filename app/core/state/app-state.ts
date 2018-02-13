@@ -1,13 +1,16 @@
-import { PtItem } from './../models/domain/pt-item.model';
+import { PtUser } from './../models/domain';
+import { PtItem } from './../models/domain';
 
-export type StateKey = 'backlogItems';
+export type StateKey = 'backlogItems' | 'currentUser';
 
 
 export interface State {
   backlogItems: PtItem[];
+  currentUser: PtUser;
   [key: string]: any; // Positibilty to add key/value pairs
 }
 
 export const INITIAL_STATE: State = {
-  backlogItems: []
+  backlogItems: [],
+  currentUser: undefined
 };

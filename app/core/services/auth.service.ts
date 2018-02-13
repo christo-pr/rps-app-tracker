@@ -5,10 +5,12 @@ import { Store } from './../state/app-store';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { ServerErrorHandlerService } from './server-error-handler.service';
+import { AuthTokenService } from './auth-token.service';
+import { StorageService } from './storage.service';
 
-import { PtAuthToken } from './../models/domain';
-import { PtUser } from './../models/domain';
-import { PtLoginModel } from './../models/domain';
+import { PtAuthToken, PtUser, PtLoginModel } from './../models/domain';
+
+const CURRENT_USER_KEY = 'CURREN_USER_KEY';
 
 @Injectable()
 export class AuthService {
@@ -16,10 +18,14 @@ export class AuthService {
   private get loginUrl() { return `${this.config.apiEndpoint}/auth`; }
 
   public get currentUser(): PtUser {
-    return this.store.value.currentUser;
+    const user = this.storageService.getItem<PtUser>(CURRENT_USER_KEY);
+    if (!this.store.value.currentUser && user) {
+    }
+    return user;
   }
 
   public set currentUser(ptUser: PtUser) {
+    this.storageService.setItem<PtUser>(CURRENT_USER_KEY, ptUser);
     this.store.set<PtUser>('currentUser', ptUser);
   }
 
@@ -27,11 +33,15 @@ export class AuthService {
     @Inject(APP_CONFIG) private config: AppConfig,
     private store: Store,
     private http: Http,
+    private authTokenService: AuthTokenService,
+    private storageService: StorageService,
     private errorHandlerService: ServerErrorHandlerService
   ) { }
 
   public isLoggedIn(): boolean {
-    return !!this.currentUser;
+    const hasToken = !!this.authTokenService.token;
+    // const hasUser = !!this.currentUser;
+    return hasToken;
   }
 
 
@@ -42,7 +52,8 @@ export class AuthService {
   }
 
   public logout() {
-    this.currentUser = undefined;
+    this.authTokenService.token = { access_token: '', dateExpires: new Date() };
+    this.storageService.setItem(CURRENT_USER_KEY, '');
   }
 
   private loginInternal(loginModel: PtLoginModel) {
@@ -55,6 +66,7 @@ export class AuthService {
     )
       .map( res => res.json())
       .do( (data: {authToken: PtAuthToken, user: PtUser} ) => {
+        this.authTokenService.token = data.authToken;
         this.currentUser = data.user;
       })
       .catch(this.errorHandlerService.handleError);

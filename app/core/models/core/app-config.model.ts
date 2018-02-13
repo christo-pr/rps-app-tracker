@@ -4,7 +4,7 @@ import { LoggingLevelEnum } from './../enum/logging-level.enum';
 export type AppType = 'Ns' | 'Web';
 
 export interface AppConfig {
-  AppType: AppType;
+  appType: AppType;
   apiEndpoint: string;
   loggingEnabled: boolean;
   loggingLevel: LoggingLevelEnum;

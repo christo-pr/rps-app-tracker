@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
+import { MenuComponent } from './components/menu/menu.component';
 
 
 @NgModule({
   imports: [],
-  exports: [],
-  declarations: [],
+  exports: [
+    MenuComponent
+  ],
+  declarations: [
+    MenuComponent
+  ],
   providers: [],
 })
 export class SharedModule { }

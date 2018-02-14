@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 
 import { TranslateModule } from '@ngx-translate/core';
+import { AuthRoutingModule } from './auth.routing';
 
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
-import { NativeScriptRouterModule } from 'nativescript-angular/router';
 
 import { AuthService } from '../../core/services';
 import { Store } from '../../core/state/app-store';
@@ -16,7 +16,7 @@ import { COMPONENTS } from './components';
   imports: [
     NativeScriptModule,
     NativeScriptFormsModule,
-    NativeScriptRouterModule,
+    AuthRoutingModule,
     TranslateModule.forRoot()
   ],
   exports: [

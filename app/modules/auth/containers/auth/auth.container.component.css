@@ -1,0 +1,13 @@
+.auth-container {
+    background: #333;
+    padding: 50;
+    padding-bottom: 5;
+}
+
+.pull-up {
+    padding-top: 0;
+}
+
+.logo-container {
+    margin-bottom: 20;
+}

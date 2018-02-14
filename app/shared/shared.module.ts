@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { MenuComponent } from './components/menu/menu.component';
-
+import { LogoutDirective } from './directives/app-logout-attribute.directive';
 
 @NgModule({
   imports: [],
   exports: [
-    MenuComponent
+    MenuComponent,
+    LogoutDirective
   ],
   declarations: [
-    MenuComponent
+    MenuComponent,
+    LogoutDirective
   ],
   providers: [],
 })

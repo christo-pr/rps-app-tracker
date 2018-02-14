@@ -1,3 +1,7 @@
-<Button text="My items" (tap)="onSelectedPresetTap('my')"></Button>
-<Button text="Open items" (tap)="onSelectedPresetTap('open')"></Button>
-<Button text="Finished items" (tap)="onSelectedPresetTap('closed')"></Button>
+<FlexboxLayout class="menu-wrapper">
+  <Button (tap)="onSelectPresetTap('my')" text="MY ITEMS"></Button>
+  <Button (tap)="onSelectPresetTap('open')" text="OPEN ITEMS"></Button>
+  <Button (tap)="onSelectPresetTap('closed')" text="FINISHED ITEMS"></Button>
+
+  <Button (tap)="onSettingsTap($event)" text="SETTINGS"></Button>
+</FlexboxLayout>

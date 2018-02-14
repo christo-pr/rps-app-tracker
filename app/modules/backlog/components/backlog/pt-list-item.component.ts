@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { PtItem } from '../../../../core/models/domain/pt-item.model';
+import { ItemType } from '../../../../core/constants';
 
 @Component({
   moduleId: module.id,
@@ -17,8 +18,8 @@ export class PtListItemComponent implements OnInit {
 
   }
 
-  public getIndicatorClass(item: PtItem): void {
-      // return ItemType.indicatorClassFromType(item.type);
+  public getIndicatorClass(item: PtItem): string {
+      return ItemType.indicatorClassFromType(item.type);
   }
 
 }

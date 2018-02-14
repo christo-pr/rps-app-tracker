@@ -23,6 +23,6 @@ export class MenuComponent implements OnInit {
   }
 
   public onSettingsTap() {
-      // this.navigationService.navigate(['settings']);
+      this.navigationService.navigate(['settings']);
   }
 }

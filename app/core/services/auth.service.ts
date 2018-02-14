@@ -22,6 +22,7 @@ export class AuthService {
   public get currentUser(): PtUser {
     const user = this.storageService.getItem<PtUser>(CURRENT_USER_KEY);
     if (!this.store.value.currentUser && user) {
+      this.store.set<PtUser>('currentUser', user);
     }
     return user;
   }
@@ -42,8 +43,8 @@ export class AuthService {
 
   public isLoggedIn(): boolean {
     const hasToken = !!this.authTokenService.token;
-    // const hasUser = !!this.currentUser;
-    return hasToken;
+    const hasUser = !!this.currentUser;
+    return hasToken && hasUser;
   }
 
 

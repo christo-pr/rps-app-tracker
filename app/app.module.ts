@@ -1,7 +1,8 @@
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA, NgModuleFactoryLoader } from '@angular/core';
 import { Http } from '@angular/http';
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 import { NativeScriptHttpModule } from 'nativescript-angular/http';
+import { NSModuleFactoryLoader } from 'nativescript-angular';
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 
@@ -43,7 +44,9 @@ setAppEvents();
     declarations: [
         AppComponent,
     ],
-    providers: [ ],
+    providers: [
+        { provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader }
+    ],
     schemas: [
         NO_ERRORS_SCHEMA
     ]

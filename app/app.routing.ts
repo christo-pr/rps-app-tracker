@@ -4,7 +4,8 @@ import { Routes } from '@angular/router';
 
 const routes: Routes = [
     { path: '', redirectTo: '/backlog/open', pathMatch: 'full' },
-    { path: 'backlog', redirectTo: '/backlog/open', pathMatch: 'full' }
+    { path: 'backlog', redirectTo: '/backlog/open', pathMatch: 'full' },
+    { path: 'settings', loadChildren: './modules/settings/settings.module#SettingsModule' }
 ];
 
 @NgModule({

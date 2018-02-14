@@ -14,5 +14,6 @@
       "hooks": true,
       "**/*.js": true,
       "**/*.js.map": true
-  }
+  },
+  "autoimport.filesToScan": "./app/**/*.{ts,tsx}",
 }

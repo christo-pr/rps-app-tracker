@@ -2,6 +2,8 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 
+import { BacklogRoutingModule } from './backlog.routing';
+
 import { BacklogRepository } from './repositories/backlog.repository';
 import { BacklogService } from './services/backlog.service';
 import { COMPONENTS } from './components';
@@ -12,7 +14,8 @@ import { PAGES } from './pages';
 
 @NgModule({
   imports: [
-    NativeScriptModule
+    NativeScriptModule,
+    BacklogRoutingModule
   ],
   exports: [
     ...PAGES

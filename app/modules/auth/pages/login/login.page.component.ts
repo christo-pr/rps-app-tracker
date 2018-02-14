@@ -4,23 +4,27 @@ import { PtLoginModel, PtUser } from '../../../../core/models/domain';
 
 
 @Component({
-    moduleId: module.id,
-    selector: 'pt-login-page',
-    templateUrl: 'login.page.component.html',
-    styleUrls: ['login.page.component.css']
+  moduleId: module.id,
+  selector: 'pt-login-page',
+  templateUrl: 'login.page.component.html',
+  styleUrls: ['login.page.component.css']
 })
 export class LoginPageComponent {
 
-    constructor(
-        private authService: AuthService,
-        private navigationService: NavigationService
-    ) { }
+  constructor(
+    private authService: AuthService,
+    private navigationService: NavigationService
+  ) { }
 
-    public onLogin(loginModel: PtLoginModel) {
-        this.authService.login(loginModel)
-            .subscribe((user: PtUser) => {
-                console.log(JSON.stringify(user));
-                this.navigationService.navigate(['/backlog'], { clearHistory: true });
-            });
-    }
+  public onLogin(loginModel: PtLoginModel) {
+    this.authService.login(loginModel)
+      .subscribe((user: PtUser) => {
+        console.log(JSON.stringify(user));
+        this.navigationService.navigate(['/backlog'], { clearHistory: true });
+      });
+  }
+
+  public onRegister(args) {
+    this.navigationService.navigate(['auth/register'], { clearHistory: true });
+  }
 }

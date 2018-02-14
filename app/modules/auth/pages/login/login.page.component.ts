@@ -19,7 +19,6 @@ export class LoginPageComponent {
   public onLogin(loginModel: PtLoginModel) {
     this.authService.login(loginModel)
       .subscribe((user: PtUser) => {
-        console.log(JSON.stringify(user));
         this.navigationService.navigate(['/backlog'], { clearHistory: true });
       });
   }

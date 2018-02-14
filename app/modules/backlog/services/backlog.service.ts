@@ -12,6 +12,14 @@ import { PtItem, PtUser } from '../../../core/models/domain';
 @Injectable()
 export class BacklogService {
 
+  private get currentPreset() {
+    return this.store.value.selectedPreset;
+  }
+
+  private get currentUserId() {
+    return this.store.value.currentUser ? this.store.value.currentUser.id : undefined;
+  }
+
   constructor(
     @Inject(APP_CONFIG) private config: AppConfig,
     private repo: BacklogRepository,
@@ -21,19 +29,27 @@ export class BacklogService {
   ) { }
 
   public fetchItems() {
-    this.repo.getPtItems(
-      this.errorHandlerService.handleError,
-      (ptItems: PtItem[]) => {
-        ptItems.forEach(i => {
-          this.setUserAvatarUrl(i.assignee);
-          i.comments.forEach(c => this.setUserAvatarUrl(c.user));
-        });
+    return new Promise( (resolve, reject) => {
+      this.repo.getPtItems(
+        this.currentPreset,
+        this.currentUserId,
+        (error) => {
+          reject(error);
+          return this.errorHandlerService.handleError(error);
+        },
+        (ptItems: PtItem[]) => {
+          ptItems.forEach(i => {
+            this.setUserAvatarUrl(i.assignee);
+            i.comments.forEach(c => this.setUserAvatarUrl(c.user));
+          });
 
-        this.zone.run(() => {
-          this.store.set('backlogItems', ptItems);
-        });
-      }
-    );
+          this.zone.run(() => {
+            this.store.set('backlogItems', ptItems);
+            resolve();
+          });
+        }
+      );
+    });
   }
 
   public getItemFromCacheOrServer(id: number) {

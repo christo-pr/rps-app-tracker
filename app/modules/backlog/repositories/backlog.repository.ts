@@ -17,6 +17,10 @@ export class BacklogRepository {
     return `${this.config.apiEndpoint}/backlog`;
   }
 
+  private getPtItemUrl(itemId: number) {
+    return `${this.config.apiEndpoint}/item/${itemId}`;
+  }
+
   public getPtItems(
     errorHandler: (error) => ErrorObservable,
     successHandler: (data: PtItem[]) => void
@@ -25,5 +29,16 @@ export class BacklogRepository {
       .map(res => res.json())
       .catch(errorHandler)
       .subscribe(successHandler);
-   }
+  }
+
+  public getPtItem(
+    ptItemId: number,
+    errorHandler: (error: any) => ErrorObservable,
+    successHandler: (ptItem: PtItem) => void
+  ) {
+    this.http.get(this.getPtItemUrl(ptItemId))
+      .map(res => res.json())
+      .catch(errorHandler)
+      .subscribe(successHandler);
+  }
 }

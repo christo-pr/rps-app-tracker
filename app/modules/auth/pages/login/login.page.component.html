@@ -5,6 +5,6 @@
     </StackLayout>
     <StackLayout row="2">
         <Label text="Need an account?" class="smaller"></Label>
-        <Button [text]="'modules.auth.pages.auth.register' | translate"></Button>
+        <Button [text]="'modules.auth.pages.auth.register' | translate" (tap)="onRegister($event)"></Button>
     </StackLayout>
 </GridLayout>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterExtensions } from 'nativescript-angular/router/router-extensions';
+
+import { NavigationService } from '../../../../core/services';
 
 import { BacklogService } from '../../services/backlog.service';
 import { Store } from '../../../../core/state/app-store';
@@ -15,7 +16,7 @@ export class BacklogPageComponent implements OnInit {
 
   public items$ = this.store.select<PtItem[]>('backlogItems');
   constructor(
-    private router: RouterExtensions,
+    private navigationService: NavigationService,
     private backlogService: BacklogService,
     private store: Store
   ) { }
@@ -27,7 +28,7 @@ export class BacklogPageComponent implements OnInit {
 
   public selectListItem(item: PtItem) {
     // Navigate to detail page
-    this.router.navigate(['/detail', item.id]);
+    this.navigationService.navigate(['/detail', item.id]);
   }
 
   public onAddTap(args) {

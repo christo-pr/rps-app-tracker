@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../../../core/services';
+import { AuthService, NavigationService } from '../../../../core/services';
 import { PtLoginModel, PtUser } from '../../../../core/models/domain';
 
 
@@ -12,14 +12,15 @@ import { PtLoginModel, PtUser } from '../../../../core/models/domain';
 export class LoginPageComponent {
 
     constructor(
-        private authService: AuthService
+        private authService: AuthService,
+        private navigationService: NavigationService
     ) { }
 
     public onLogin(loginModel: PtLoginModel) {
         this.authService.login(loginModel)
             .subscribe((user: PtUser) => {
                 console.log(JSON.stringify(user));
-                // this.navigationService.navigate(['/backlog'], { clearHistory: true });
+                this.navigationService.navigate(['/backlog'], { clearHistory: true });
             });
     }
 }

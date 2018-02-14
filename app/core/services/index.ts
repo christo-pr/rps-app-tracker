@@ -4,10 +4,12 @@ import { AuthService,
          AuthTokenService,
          StorageNsService,
          StorageWebService,
-         NavigationService
+         NavigationService,
+         AuthGuard
 } from './';
 
 export * from './auth.service';
+export * from './auth-guard.service';
 export * from './auth-token.service';
 export * from './logger.service';
 
@@ -20,6 +22,7 @@ export * from './navigation.service';
 export * from './server-error-handler.service';
 
 export const SERVICES = [
+  AuthGuard,
   AuthService,
   AuthTokenService,
   LoggerService,

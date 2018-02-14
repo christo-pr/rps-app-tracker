@@ -7,7 +7,8 @@ import { PtItem } from '../../../../core/models/domain';
 @Component({
   moduleId: module.id,
   selector: 'pt-backlog',
-  templateUrl: 'backlog.page.component.html'
+  templateUrl: 'backlog.page.component.html',
+  styleUrls: ['backlog.page.component.css']
 })
 export class BacklogPageComponent implements OnInit {
 
@@ -22,7 +23,7 @@ export class BacklogPageComponent implements OnInit {
   }
 
 
-  public selecteListItem(item: PtItem) {
+  public selectListItem(item: PtItem) {
     // Navigate to detail page
   }
 

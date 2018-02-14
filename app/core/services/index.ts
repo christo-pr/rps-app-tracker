@@ -1,4 +1,11 @@
-import { AuthService, LoggerService, ServerErrorHandlerService, AuthTokenService, StorageNsService, StorageWebService } from './';
+import { AuthService,
+         LoggerService,
+         ServerErrorHandlerService,
+         AuthTokenService,
+         StorageNsService,
+         StorageWebService,
+         NavigationService
+} from './';
 
 export * from './auth.service';
 export * from './auth-token.service';
@@ -8,6 +15,8 @@ export * from './ns/storage-ns.service';
 export * from './web/storage-web.service';
 export * from './storage.service';
 
+export * from './navigation.service';
+
 export * from './server-error-handler.service';
 
 export const SERVICES = [
@@ -16,6 +25,7 @@ export const SERVICES = [
   LoggerService,
   ServerErrorHandlerService,
   StorageNsService,
-  StorageWebService
+  StorageWebService,
+  NavigationService
 ];
 

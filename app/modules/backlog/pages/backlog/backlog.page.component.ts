@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 import { NavigationService } from '../../../../core/services';
 
 import { BacklogService } from '../../services/backlog.service';
 import { Store } from '../../../../core/state/app-store';
 import { PtItem } from '../../../../core/models/domain';
+import { PresetType } from '../../../../shared/models/ui/types/presets';
 
 @Component({
   moduleId: module.id,
@@ -15,14 +18,28 @@ import { PtItem } from '../../../../core/models/domain';
 export class BacklogPageComponent implements OnInit {
 
   public items$ = this.store.select<PtItem[]>('backlogItems');
+  public selectedPreset$: Observable<PresetType> = this.store.select<PresetType>('selectedPreset');
+
   constructor(
+    private activatedRoute: ActivatedRoute,
     private navigationService: NavigationService,
     private backlogService: BacklogService,
     private store: Store
   ) { }
 
   public ngOnInit() {
-    this.backlogService.fetchItems();
+    this.activatedRoute.params.subscribe( params => {
+      const reqPreset = params['preset'];
+      if (reqPreset) {
+        this.store.set('selectedPreset', reqPreset);
+      }
+    });
+
+    this.selectedPreset$.subscribe( next => {
+      this.backlogService.fetchItems().then(() => {
+        console.log('loaded');
+      });
+    });
   }
 
 

@@ -11,6 +11,7 @@ import { Store } from '../../core/state/app-store';
 
 import { PAGES } from './pages';
 import { COMPONENTS } from './components';
+import { CONTAINERS } from './containers';
 
 @NgModule({
   imports: [
@@ -20,11 +21,12 @@ import { COMPONENTS } from './components';
     TranslateModule.forRoot()
   ],
   exports: [
-     ...PAGES
+    ...PAGES
   ],
   declarations: [
-     ...PAGES,
-     ...COMPONENTS
+    ...CONTAINERS,
+    ...PAGES,
+    ...COMPONENTS
   ],
   providers: [
     AuthService,

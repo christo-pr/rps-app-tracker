@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { PresetType } from './../../models/ui/types/presets';
+import { NavigationService } from '../../../core/services';
 
 @Component({
   moduleId: module.id,
@@ -9,12 +11,15 @@ import { PresetType } from './../../models/ui/types/presets';
 })
 
 export class MenuComponent implements OnInit {
-  constructor() { }
+
+  constructor(
+    private navigationService: NavigationService
+  ) { }
 
   ngOnInit() { }
 
   public onSelectPresetTap(preset: PresetType) {
-    // this.navigationService.navigate(['backlog', preset]);
+    this.navigationService.navigate(['backlog', preset]);
   }
 
   public onSettingsTap() {

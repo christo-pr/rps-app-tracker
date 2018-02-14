@@ -3,7 +3,7 @@ import { NativeScriptRouterModule } from 'nativescript-angular/router';
 import { Routes } from '@angular/router';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/auth/login', pathMatch: 'full' }
+    { path: '', redirectTo: '/backlog', pathMatch: 'full' }
 ];
 
 @NgModule({

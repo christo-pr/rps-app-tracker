@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 import { NativeScriptHttpModule } from 'nativescript-angular/http';
 import { NSModuleFactoryLoader } from 'nativescript-angular';
+import { registerElement } from 'nativescript-angular/element-registry';
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 
@@ -19,6 +20,9 @@ import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 import { createTranslationLoader } from './utils';
 import './utils/console-color';
 import './rxjs-imports';
+
+// We register an element with the register element function from the navitescript angular lib 
+registerElement('PullToRefresh', () => require('nativescript-pulltorefresh').PullToRefresh);
 
 setAppEvents();
 

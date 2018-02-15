@@ -4,7 +4,8 @@
         <GridLayout columns="*, 25" class="login-field-wrapper">
             <TextField #emailModel="ngModel" class="login-field" hint="Email" [(ngModel)]="email" col="0" required email>
             </TextField>
-
+            <Label [text]="'fa-envelope' | fonticon" class="fa" col="1"></Label>
+            
         </GridLayout>
 
         <StackLayout *ngIf="emailModel.errors && emailModel.touched" class="login-field-validation-wrapper">
@@ -19,7 +20,7 @@
         <GridLayout columns="*, 25" class="login-field-wrapper">
             <TextField #passwordModel="ngModel" class="login-field" hint="Password" [(ngModel)]="password" secure="true" col="0" required>
             </TextField>
-
+            <Label [text]="'fa-lock' | fonticon" class="fa" col="1"></Label>
         </GridLayout>
 
         <StackLayout>

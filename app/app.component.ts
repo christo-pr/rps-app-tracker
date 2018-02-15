@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 import { Page } from 'ui/page';
 import { device } from 'platform';
 import { TranslateService } from '@ngx-translate/core';
-import { LoggerService } from './core/services';
-import { Store } from './core/state/app-store';
-import { PtItem } from './core/models/domain';
 
 @Component({
   selector: 'ns-app',
@@ -15,9 +12,7 @@ export class AppComponent {
 
   constructor(
     private page: Page,
-    private store: Store,
-    private translateService: TranslateService,
-    private logger: LoggerService
+    private translateService: TranslateService
   ) {
     page.actionBarHidden = true;
     page.backgroundSpanUnderStatusBar = true;

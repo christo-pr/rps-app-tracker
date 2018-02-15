@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { TranslateModule } from '@ngx-translate/core';
+import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 import { AuthRoutingModule } from './auth.routing';
 
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
@@ -18,7 +19,8 @@ import { CONTAINERS } from './containers';
     NativeScriptModule,
     NativeScriptFormsModule,
     AuthRoutingModule,
-    TranslateModule.forRoot()
+    TranslateModule.forRoot(),
+    TNSFontIconModule
   ],
   exports: [
     ...PAGES

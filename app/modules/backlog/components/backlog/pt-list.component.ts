@@ -11,7 +11,9 @@ import { ItemEventData } from 'ui/list-view';
 export class PtListComponent implements OnInit {
 
   @Input() items: PtItem[];
+  @Input() isRefreshing: boolean;
   @Output() listItemSelected: EventEmitter<PtItem> = new EventEmitter<PtItem>();
+  @Output() listRefreshRequested: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() { }
 
@@ -23,5 +25,9 @@ export class PtListComponent implements OnInit {
     const lv = args.object;
     const item = <PtItem>(<any>lv).items[args.index];
     this.listItemSelected.emit(item);
+  }
+
+  refreshList(_args) {
+    this.listRefreshRequested.emit();
   }
 }

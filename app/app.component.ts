@@ -14,7 +14,7 @@ export class AppComponent {
     private page: Page,
     private translateService: TranslateService
   ) {
-    page.actionBarHidden = true;
+    // page.actionBarHidden = true;
     page.backgroundSpanUnderStatusBar = true;
 
     // Set the default translation to en-US

@@ -14,6 +14,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { setAppEvents } from './globals/app-events';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 
 import { createTranslationLoader } from './utils';
 import './utils/console-color';
@@ -39,6 +40,9 @@ setAppEvents();
             useFactory: (createTranslationLoader),
             deps: [Http]
           }
+        }),
+        TNSFontIconModule.forRoot({
+            'fa': './assets/css/font-awesome.css'
         })
     ],
     declarations: [

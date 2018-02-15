@@ -86,7 +86,7 @@ export class BacklogPageComponent implements AfterViewInit, OnInit {
       .catch(() => {
         // set is refreshin to false
         this.isListRefreshing$.next(false);
-      })
+      });
   }
 
 }

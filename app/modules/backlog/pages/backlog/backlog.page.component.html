@@ -1,18 +1,47 @@
-<GridLayout class="backlog-container" rows="*,60, 60, 60">
-
-    <GridLayout row="0" class="list-container">
-        <pt-list [items]="items$ | async" (listItemSelected)="selectListItem($event)" 
-                (listRefreshRequested)="onRefresh($event)" [isRefreshing]="isListRefreshing$ | async"></pt-list>
-    </GridLayout>
-
-    <StackLayout row="1" class="btn-add-wrapper">
-        <Button text="Add" class="btn-add" (tap)="onAddTap($event)"></Button>
+<ActionBar title="Backlog">
+  <ActionItem (tap)="showSlideOut($event)" ios.position="right">
+    <StackLayout class="navbar_image_wrapper" ios:horizontalAlignment="right">
+        <Image src="res://iconelipseswhite"></Image>
     </StackLayout>
+  </ActionItem>
+</ActionBar>
 
-    <Button appLogout row="2" text="Logout"></Button>
+<RadSideDrawer (drawerClosing)="onDrawerClose($event)">
+  <!-- Drawer Content -->
+  <StackLayout tkDrawerContent>
+    <GridLayout rows="auto, *, 100" class="side-drawer-panel">
+      <!-- Logo -->
+      <StackLayout row="0">
+        <Image src="res://rpslogo" class="slide-out-img" stretch="aspectFit"></Image>
+        
+      </StackLayout>
 
-    <StackLayout row="3">
+      <!-- Menu Content -->
+      <StackLayout row="1" class="menu-container">
         <pt-menu></pt-menu>
-    </StackLayout>
+      </StackLayout>
 
-</GridLayout>
+      <!-- Logout -->
+      <StackLayout row="2" class="menu-container">
+        <Button appLogout text="Logout"></Button>
+      </StackLayout>
+    </GridLayout>
+  </StackLayout>
+
+  <!-- Main Content -->
+  <StackLayout tkMainContent>
+    <GridLayout class="backlog-container" rows="*, auto">
+
+      <GridLayout row="0" class="list-container">
+        <pt-list [items]="items$ | async" (listItemSelected)="selectListItem($event)" (listRefreshRequested)="onRefresh($event)"
+          [isRefreshing]="isListRefreshing$ | async"></pt-list>
+      </GridLayout>
+
+      <StackLayout row="1" class="btn-add-wrapper">
+        <Button text="Add" class="btn-add" (tap)="onAddTap($event)"></Button>
+      </StackLayout>
+
+    </GridLayout>
+  </StackLayout>
+
+</RadSideDrawer>

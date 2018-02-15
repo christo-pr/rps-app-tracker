@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { NavigationService } from '../../../../core/services';
 
@@ -19,6 +20,7 @@ export class BacklogPageComponent implements OnInit {
 
   public items$ = this.store.select<PtItem[]>('backlogItems');
   public selectedPreset$: Observable<PresetType> = this.store.select<PresetType>('selectedPreset');
+  public isListRefreshing$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -50,6 +52,19 @@ export class BacklogPageComponent implements OnInit {
 
   public onAddTap(args) {
     // Add new resource
+  }
+
+  public onRefresh(args) {
+    this.isListRefreshing$.next(true);
+    this.backlogService.fetchItems()
+      .then(() => {
+        // set is refreshin to false
+        this.isListRefreshing$.next(false);
+      })
+      .catch(() => {
+        // set is refreshin to false
+        this.isListRefreshing$.next(false);
+      })
   }
 
 }

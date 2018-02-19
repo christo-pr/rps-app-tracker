@@ -90,4 +90,14 @@ export class BacklogService {
     );
   }
 
+  public updatePtItem(item: PtItem) {
+    this.repo.updatePtItem(
+      item,
+      this.errorHandlerService.handleError,
+      (updatedItem: PtItem) => {
+        this.getPtItem(updatedItem.id);
+      }
+    );
+  }
+
 }

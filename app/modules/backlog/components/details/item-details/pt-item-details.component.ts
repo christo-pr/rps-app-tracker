@@ -5,7 +5,8 @@ import { RadDataFormComponent } from 'nativescript-pro-ui/dataform/angular';
 
 import { setStepperEditorContentOffset, setStepperEditorTextPostfix,
          setStepperEditorColors, setMultiLineEditorFontSize,
-         setSegmentedEditorColor
+         setSegmentedEditorColor, setPickerEditorImageLocation,
+         getPickerEditorValueText
 } from '../../../../../shared/helpers/ui-data-form';
 
 import { PtItem } from '../../../../../core/models/domain';
@@ -66,6 +67,8 @@ export class PtItemDetailsComponent implements OnInit {
       break;
       case 'priorityStr': this.editorSetupPriority(args.editor);
       break;
+      case 'typeStr': this.editorSetupType(args.editor);
+      break;
     }
   }
 
@@ -76,6 +79,11 @@ export class PtItemDetailsComponent implements OnInit {
     setStepperEditorTextPostfix(editor, 'point', 'points');
     // 3. set color to level
     setStepperEditorColors(editor, COLOR_LIGHT, COLOR_DARK)
+  }
+
+  private editorSetupType(editor) {
+    setPickerEditorImageLocation(editor);
+    this.selectedTypeValue = <PtItemType>getPickerEditorValueText(editor);
   }
 
   private editorSetupDescription(editor) {

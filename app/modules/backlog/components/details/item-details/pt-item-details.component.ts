@@ -3,11 +3,16 @@ import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter
 import { DataFormEventData } from 'nativescript-pro-ui/dataform';
 import { RadDataFormComponent } from 'nativescript-pro-ui/dataform/angular';
 
+import { setStepperEditorContentOffset,
+         setStepperEditorTextPostfix,
+         setStepperEditorColors,
+         setMultiLineEditorFontSize
+} from '../../../../../shared/helpers/ui-data-form';
+
 import { PtItem } from '../../../../../core/models/domain';
 import { PtItemDetailsEditFormModel, ptItemToFormModel } from '../../../../../shared/models/forms';
 import { ItemType, PT_ITEM_STATUSES, PT_ITEM_PRIORITIES, COLOR_LIGHT, COLOR_DARK } from '../../../../../core/constants';
 import { PtItemType } from '../../../../../core/models/domain/types';
-import { setStepperEditorContentOffset, setStepperEditorTextPostfix, setStepperEditorColors } from '../../../../../shared/helpers/ui-data-form';
 
 @Component({
   moduleId: module.id,
@@ -54,6 +59,7 @@ export class PtItemDetailsComponent implements OnInit {
 
   public onEditorUpdate(args: DataFormEventData) {
     switch ( args.propertyName ) {
+      case 'description': this.editorSetupDescription(args.editor); break;
       case 'estimate': this.editorSetupEstimate(args.editor); break;
 
       default:
@@ -68,6 +74,11 @@ export class PtItemDetailsComponent implements OnInit {
     setStepperEditorTextPostfix(editor, 'point', 'points');
     // 3. set color to level
     setStepperEditorColors(editor, COLOR_LIGHT, COLOR_DARK)
+  }
+
+  private editorSetupDescription(editor) {
+    // 1. Increase the size of the multi line editor
+    setMultiLineEditorFontSize(editor, 17);
   }
 
   private notifyUpdatedItem() {

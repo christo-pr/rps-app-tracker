@@ -5,8 +5,9 @@ import { RadDataFormComponent } from 'nativescript-pro-ui/dataform/angular';
 
 import { PtItem } from '../../../../../core/models/domain';
 import { PtItemDetailsEditFormModel, ptItemToFormModel } from '../../../../../shared/models/forms';
-import { ItemType, PT_ITEM_STATUSES, PT_ITEM_PRIORITIES } from '../../../../../core/constants';
+import { ItemType, PT_ITEM_STATUSES, PT_ITEM_PRIORITIES, COLOR_LIGHT, COLOR_DARK } from '../../../../../core/constants';
 import { PtItemType } from '../../../../../core/models/domain/types';
+import { setStepperEditorContentOffset, setStepperEditorTextPostfix, setStepperEditorColors } from '../../../../../shared/helpers/ui-data-form';
 
 @Component({
   moduleId: module.id,
@@ -49,6 +50,24 @@ export class PtItemDetailsComponent implements OnInit {
 
   public onPropertyCommitted() {
     this.notifyUpdatedItem();
+  }
+
+  public onEditorUpdate(args: DataFormEventData) {
+    switch ( args.propertyName ) {
+      case 'estimate': this.editorSetupEstimate(args.editor); break;
+
+      default:
+        break;
+    }
+  }
+
+  private editorSetupEstimate(editor) {
+    // 1. Set content offset
+    setStepperEditorContentOffset(editor, -25, 0);
+    // 2. set potfix to estimate
+    setStepperEditorTextPostfix(editor, 'point', 'points');
+    // 3. set color to level
+    setStepperEditorColors(editor, COLOR_LIGHT, COLOR_DARK)
   }
 
   private notifyUpdatedItem() {

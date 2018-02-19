@@ -1,3 +1,5 @@
+import { Color } from 'color';
+
 export function setStepperEditorContentOffset(editor, horizontalOffset: number, verticalOffset: number) {
 
 }

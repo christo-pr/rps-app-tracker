@@ -3,16 +3,16 @@ import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter
 import { DataFormEventData } from 'nativescript-pro-ui/dataform';
 import { RadDataFormComponent } from 'nativescript-pro-ui/dataform/angular';
 
-import { setStepperEditorContentOffset,
-         setStepperEditorTextPostfix,
-         setStepperEditorColors,
-         setMultiLineEditorFontSize
+import { setStepperEditorContentOffset, setStepperEditorTextPostfix,
+         setStepperEditorColors, setMultiLineEditorFontSize,
+         setSegmentedEditorColor
 } from '../../../../../shared/helpers/ui-data-form';
 
 import { PtItem } from '../../../../../core/models/domain';
 import { PtItemDetailsEditFormModel, ptItemToFormModel } from '../../../../../shared/models/forms';
 import { ItemType, PT_ITEM_STATUSES, PT_ITEM_PRIORITIES, COLOR_LIGHT, COLOR_DARK } from '../../../../../core/constants';
 import { PtItemType } from '../../../../../core/models/domain/types';
+import { PriorityEnum } from '../../../../../core/models/domain/enums';
 
 @Component({
   moduleId: module.id,
@@ -29,6 +29,7 @@ export class PtItemDetailsComponent implements OnInit {
   @ViewChild('itemDetailsForm') itemDetailsForm: RadDataFormComponent;
 
   private selectedTypeValue: PtItemType;
+  public selectedPriorityValue: PriorityEnum;
 
   public itemForm: PtItemDetailsEditFormModel;
 
@@ -59,11 +60,12 @@ export class PtItemDetailsComponent implements OnInit {
 
   public onEditorUpdate(args: DataFormEventData) {
     switch ( args.propertyName ) {
-      case 'description': this.editorSetupDescription(args.editor); break;
-      case 'estimate': this.editorSetupEstimate(args.editor); break;
-
-      default:
-        break;
+      case 'description': this.editorSetupDescription(args.editor);
+      break;
+      case 'estimate': this.editorSetupEstimate(args.editor);
+      break;
+      case 'priorityStr': this.editorSetupPriority(args.editor);
+      break;
     }
   }
 
@@ -79,6 +81,13 @@ export class PtItemDetailsComponent implements OnInit {
   private editorSetupDescription(editor) {
     // 1. Increase the size of the multi line editor
     setMultiLineEditorFontSize(editor, 17);
+  }
+
+  private editorSetupPriority(editor) {
+    const editorPriority = <PriorityEnum>editor.value;
+    this.selectedPriorityValue = editorPriority ? editorPriority :
+    <PriorityEnum>this.itemForm.priorityStr;
+    setSegmentedEditorColor(editor, PriorityEnum.getColor(this.selectedPriorityValue))
   }
 
   private notifyUpdatedItem() {

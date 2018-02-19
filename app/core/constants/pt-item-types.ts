@@ -48,7 +48,6 @@ export class ItemType {
     }
 
     public static imageResFromType(ptItemType: PtItemType): string {
-        console.log('ptItemType: ', ptItemType);
         switch (ptItemType) {
             case PT_ITEM_TYPE_PBI:
                 return 'res://ipbi';

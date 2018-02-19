@@ -1,5 +1,6 @@
 <GridLayout rows="*" class="pt-item-details-container">
-  <RadDataForm #itemDetailsForm [source]="itemForm" (propertyCommitted)="onPropertyCommitted($event)">
+  <RadDataForm #itemDetailsForm [source]="itemForm" (propertyCommitted)="onPropertyCommitted($event)"
+    (editorUpdate)="onEditorUpdate($event)">
 
     <TKEntityProperty tkDataFormProperty name="title" displayName="Title" index="1" hintText="Title">
       <TKPropertyEditor tkEntityPropertyEditor type="Text">

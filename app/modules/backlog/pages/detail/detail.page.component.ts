@@ -32,4 +32,8 @@ export class DetailPageComponent implements OnInit {
         // TODO: navigate back to previous page
     }
 
+    public onItemSaved(item: PtItem) {
+        this.backlogService.updatePtItem(item);
+    }
+
 }
